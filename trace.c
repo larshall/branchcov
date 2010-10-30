@@ -116,7 +116,7 @@ void traverse_stmt_list(tree stmt)
     for (; !tsi_end_p(i); tsi_next(&i))
     {
         // If case_label_expr: instrument a trace after the case label.
-        // If multiple cases is after eachother insert at the last case lable
+        // If multiple cases is after eachother insert at the last case label
         // because of:
         // case x:
         // case y:
@@ -261,7 +261,7 @@ void instrument_trace(tree t, tree_stmt_iterator *iterator, int btype)
 
         if (fn_decl == NULL)
         {
-            printf("\nCannot find printf. Is printf accessible from here?");
+            printf("\nIs printf accessible from here?");
             exit(1);
         }
 
@@ -270,7 +270,8 @@ void instrument_trace(tree t, tree_stmt_iterator *iterator, int btype)
         sprintf(str, "##filename:%s;scope:%s;functionname:%s;lineno:%i\n",
             main_input_filename, current_sc, current_fn_name, lineno);
         // argh apparently the length of string needs to be +1?
-        params = build_tree_list(NULL_TREE, build_string_literal(strlen(str), str));
+        params = build_tree_list(NULL_TREE,
+            build_string_literal(strlen(str), str));
     }
     else
     {
@@ -279,7 +280,7 @@ void instrument_trace(tree t, tree_stmt_iterator *iterator, int btype)
 
         if (fn_decl == NULL)
         {
-            printf("\nCannot find __tracer. Is __tracer accessible from here?");
+            printf("\nIs __tracer accessible from here?");
             exit(1);
         }
 
@@ -295,8 +296,10 @@ void instrument_trace(tree t, tree_stmt_iterator *iterator, int btype)
  
     if (params != NULL)
     {
-        tree fn_call = build_function_call_expr(DECL_SOURCE_LOCATION(body), fn_decl, params);
-        tree stmt = build_stmt (DECL_SOURCE_LOCATION(body), EXPR_STMT, fn_call);
+        tree fn_call = build_function_call_expr(
+            DECL_SOURCE_LOCATION(body), fn_decl, params);
+        tree stmt = build_stmt (DECL_SOURCE_LOCATION(body),
+            EXPR_STMT, fn_call);
 
         if ((&iterator == NULL) && (TREE_CODE(body) == STATEMENT_LIST))
             *iterator = tsi_start(STATEMENT_LIST_CHECK(body));
