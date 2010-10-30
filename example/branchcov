@@ -1,0 +1,5 @@
+testSwitch
+ns::TestCtorDtor::TestClass::TestClass
+ns::TestCtorDtor::TestClass::~TestClass
+a::b::c::d::test
+Base::baseTest
