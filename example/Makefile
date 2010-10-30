@@ -1,7 +1,5 @@
 # callback to __tracer
 CXX = g++-4.5 -fplugin=../branchcov.so -fplugin-arg-branchcov-calltype=callback -fplugin-arg-branchcov-tracefile=branchcov 
-# printf:
-# CXX = g++-4.5 -fplugin=../branchcov.so -fplugin-arg-branchcov-calltype=callback -fplugin-arg-branchcov-tracefile=branchcov
 
 CXXFLAGS =-Wall -g
 INCLUDES =
