@@ -2,7 +2,7 @@ BranchCov is a gcc plugin for gcc-4.5 for measuring branch coverage.
 
 BranchCov is designed for analyzing which branches gets executed runtime.
 It can either insert a printf statement in each possible branch or
-insert a function a call statement to __tracer, which has to be
+insert a function call to __tracer, which has to be
 accessible from where the call expression will get inserted.
 
 The function call has to have the following prototype:
@@ -14,7 +14,7 @@ following parameters:
  * filename - The name of the file
  * scope - The namespace/class name[s] concatenated c++ style.
  * functionname - The method/functionname
- * linno - The line number
+ * lineno - The line number
 
 Because gcc doesn't keep track of the 'else' keyword, BranchCov will pass
 the lineno that point to the line where the next statement in that branch is.
@@ -30,5 +30,5 @@ Please check that all is OK when using BranchCov before running it in
 a production setup. (Eg. Check that it doesn't overwrite some code, Lineno is
 correct etc).
 
-I will very much appreciate any feedback / bug reports.
+I will appreciate any feedback / bug reports you might have.
 
